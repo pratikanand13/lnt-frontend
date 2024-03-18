@@ -35,12 +35,29 @@ const Formm = () => {
       [name]: value,
     });
   };
+ 
   const navigate = useNavigate();
   // console.log(navigate);
-  const onSubmitForm = (e) => {
+  const onSubmitForm = async (e) => {
     e.preventDefault();
-    console.log(formData);
-    navigate("/project-1/speedometer");
+    try{
+      const res = await fetch('http://localhost:3000/proj1/pred_Prod' , {
+        method: "POST",
+        headers: {
+          "Content-Type" : "application/json",
+        },
+        body : JSON.stringify(formData),
+      });
+      if(!response.ok){
+        res.status(401).send("Unauthorized")
+      }
+      navigate("/project-1/speedometer");
+      console.log("success")
+    } catch(error) {
+      res.status(404).send("Error in submitting")
+    }
+    
+    // 
   };
 
   return (
