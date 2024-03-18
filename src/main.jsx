@@ -7,7 +7,7 @@ import Home from "./components/Home/Home";
 import Project1 from "./components/Projects/Project1";
 import Project2 from "./components/Projects/Project2";
 import Faq from "./components/FAQ/Faq";
-
+import Speedometer from "./components/Input/Speedometer";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -18,16 +18,26 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "project-2",
+        path: "/project-1",
+        element: <Project1 />,
+        // children: [
+        //   {
+        //     path: "/project-1/speedometer",
+        //     element: <Speedometer />,
+        //   },
+        // ],
+      },
+      {
+        path: "/project-2",
         element: <Project2 />,
       },
       {
-        path: "project-1",
-        element: <Project1 />,
+        path: "/faq",
+        element: <Faq />,
       },
       {
-        path: "faq",
-        element: <Faq />,
+        path: "/project-1/speedometer",
+        element: <Speedometer />,
       },
     ],
   },

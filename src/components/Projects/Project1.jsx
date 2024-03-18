@@ -1,10 +1,18 @@
 import React from "react";
-import Form from "../Input/Form";
+import Formm from "../Input/Form";
 
 export default function Project1() {
   return (
-    <div className="mt-20 w-full h-full">
-      <Form />
+    <div
+      className=""
+      style={{
+        backgroundImage:
+          "url(https://www.lntecc.com/media/m2ybp4mb/blue-bg-new.jpg)",
+      }}
+    >
+      <div className="w-full h-full">
+        <Formm />
+      </div>
     </div>
   );
 }

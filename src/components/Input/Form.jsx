@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-
+import { useNavigate } from "react-router-dom";
 const textVariants = {
   initial: {
     y: -30,
@@ -16,16 +16,16 @@ const textVariants = {
   },
 };
 
-const Form = () => {
+const Formm = () => {
   const [formData, setFormData] = useState({
     teamNumber: "",
-    days: "",
+    day: "",
     department: "",
-    numberOfWorkers: "",
-    overtime: "",
-    incentive: "",
-    svm: "",
-    targetedProductivity: "",
+    numberOfWorkers: "0",
+    overtime: "0",
+    incentive: "0",
+    svm: "0",
+    targetedProductivity: "0",
   });
 
   const handleChange = (e) => {
@@ -35,6 +35,13 @@ const Form = () => {
       [name]: value,
     });
   };
+  const navigate = useNavigate();
+  // console.log(navigate);
+  const onSubmitForm = (e) => {
+    e.preventDefault();
+    console.log(formData);
+    navigate("/project-1/speedometer");
+  };
 
   return (
     <motion.div
@@ -42,12 +49,12 @@ const Form = () => {
       initial="initial"
       animate="animate"
     >
-      <form className="max-w-md mx-auto mt-8">
-        <div className="flex justify-start">
-          <motion.div className="mb-4 mr-2" variants={textVariants}>
+      <form className="max-w-md mx-auto mt-8" onSubmit={onSubmitForm}>
+        <div className="flex justify-start space-x-2">
+          <div className="mb-4">
             <label
               htmlFor="teamNumber"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-blue-700"
             >
               Team Number
             </label>
@@ -64,31 +71,37 @@ const Form = () => {
                 </option>
               ))}
             </select>
-          </motion.div>
-          <motion.div className="mb-4 mx-2" variants={textVariants}>
+          </div>
+          <div className="mb-4">
             <label
-              htmlFor="days"
+              htmlFor="day"
               className="block text-sm font-medium text-gray-700"
             >
-              Days
+              Day
             </label>
             <select
-              id="days"
-              name="days"
+              id="day"
+              name="day"
               className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               onChange={handleChange}
-              value={formData.days}
+              value={formData.day}
             >
-              <option value="Monday">Monday</option>
-              <option value="Tuesday">Tuesday</option>
-              <option value="Wednesday">Wednesday</option>
-              <option value="Thursday">Thursday</option>
-              <option value="Friday">Friday</option>
-              <option value="Saturday">Saturday</option>
-              <option value="Sunday">Sunday</option>
+              {[
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday",
+              ].map((day) => (
+                <option key={day} value={day}>
+                  {day}
+                </option>
+              ))}
             </select>
-          </motion.div>
-          <motion.div className="mb-4 ml-2 flex-grow" variants={textVariants}>
+          </div>
+          <div className="mb-4 flex-grow">
             <label
               htmlFor="department"
               className="block text-sm font-medium text-gray-700"
@@ -102,12 +115,12 @@ const Form = () => {
               onChange={handleChange}
               value={formData.department}
             >
-              <option value="Yes">Brickwork</option>
-              <option value="No">Concreting</option>
+              <option value="Brickwork">Brickwork</option>
+              <option value="Concreting">Concreting</option>
             </select>
-          </motion.div>
+          </div>
         </div>
-        <motion.div className="mb-4" variants={textVariants}>
+        <div className="mb-4">
           <label
             htmlFor="numberOfWorkers"
             className="block text-sm font-medium text-gray-700"
@@ -122,9 +135,8 @@ const Form = () => {
             onChange={handleChange}
             value={formData.numberOfWorkers}
           />
-        </motion.div>
-
-        <motion.div className="mb-4" variants={textVariants}>
+        </div>
+        <div className="mb-4">
           <label
             htmlFor="overtime"
             className="block text-sm font-medium text-gray-700"
@@ -139,9 +151,8 @@ const Form = () => {
             onChange={handleChange}
             value={formData.overtime}
           />
-        </motion.div>
-
-        <motion.div className="mb-4" variants={textVariants}>
+        </div>
+        <div className="mb-4">
           <label
             htmlFor="incentive"
             className="block text-sm font-medium text-gray-700"
@@ -156,9 +167,8 @@ const Form = () => {
             onChange={handleChange}
             value={formData.incentive}
           />
-        </motion.div>
-
-        <motion.div className="mb-4" variants={textVariants}>
+        </div>
+        <div className="mb-4">
           <label
             htmlFor="svm"
             className="block text-sm font-medium text-gray-700"
@@ -173,9 +183,8 @@ const Form = () => {
             onChange={handleChange}
             value={formData.svm}
           />
-        </motion.div>
-
-        <motion.div className="mb-4" variants={textVariants}>
+        </div>
+        <div className="mb-4">
           <label
             htmlFor="targetedProductivity"
             className="block text-sm font-medium text-gray-700"
@@ -190,19 +199,18 @@ const Form = () => {
             onChange={handleChange}
             value={formData.targetedProductivity}
           />
-        </motion.div>
-
-        <motion.div className="flex justify-end" variants={textVariants}>
+        </div>
+        <div className="flex justify-end">
           <button
             type="submit"
             className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
             Submit
           </button>
-        </motion.div>
+        </div>
       </form>
     </motion.div>
   );
 };
 
-export default Form;
+export default Formm;
